@@ -34,6 +34,8 @@ import { AIAssistant } from './pages/business/AIAssistant'
 import { FiscalNotes } from './pages/business/FiscalNotes'
 import { TaxRecords } from './pages/business/TaxRecords'
 import { Accounting } from './pages/business/Accounting'
+import { PricingSimulator } from './pages/education/PricingSimulator'
+import { FinancialEducation } from './pages/education/FinancialEducation'
 import { Settings } from './pages/settings/Settings'
 import { Notifications } from './pages/Notifications'
 
@@ -85,6 +87,8 @@ function AppRoutes() {
       <Route path="/b/:businessId/notas-fiscais" element={<PrivateRoute><BusinessLayout><FiscalNotes /></BusinessLayout></PrivateRoute>} />
       <Route path="/b/:businessId/impostos" element={<PrivateRoute><BusinessLayout><TaxRecords /></BusinessLayout></PrivateRoute>} />
       <Route path="/b/:businessId/contabilidade" element={<PrivateRoute><BusinessLayout><Accounting /></BusinessLayout></PrivateRoute>} />
+      <Route path="/b/:businessId/educacao" element={<PrivateRoute><BusinessLayout><FinancialEducation /></BusinessLayout></PrivateRoute>} />
+      <Route path="/b/:businessId/precificacao" element={<PrivateRoute><BusinessLayout><PricingSimulator /></BusinessLayout></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   )
