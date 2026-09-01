@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { supabase } from '../../lib/supabase'
 import { Button } from '../../components/ui/Button'
+import { HelpWidget } from "../../components/HelpWidget"
 import { Carousel } from '../../components/Carousel'
 import { AxionLogo } from '../../components/AxionLogo'
 
@@ -105,6 +106,7 @@ export function SelectBusiness() {
           </div>
         )}
       </main>
+      <HelpWidget businessId={businesses[0]?.id} />
     </div>
   )
 }
