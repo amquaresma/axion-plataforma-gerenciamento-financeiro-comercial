@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { supabase } from '../../lib/supabase'
 import { Button } from '../../components/ui/Button'
+import { Footer } from "../../components/Footer"
 import { HelpWidget } from "../../components/HelpWidget"
 import { Carousel } from '../../components/Carousel'
 import { AxionLogo } from '../../components/AxionLogo'
@@ -34,7 +35,7 @@ export function SelectBusiness() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6 py-3 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <AxionLogo />
@@ -62,7 +63,7 @@ export function SelectBusiness() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
+      <main className="max-w-6xl mx-auto px-6 py-12 flex-1">
         {businesses.length === 0 ? (
           <div className="max-w-lg mx-auto">
             <div className="mb-8">
@@ -106,6 +107,8 @@ export function SelectBusiness() {
           </div>
         )}
       </main>
+      
+      <Footer />
       <HelpWidget businessId={businesses[0]?.id} />
     </div>
   )
