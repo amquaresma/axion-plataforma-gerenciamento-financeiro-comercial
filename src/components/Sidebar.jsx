@@ -80,7 +80,7 @@ const menuGroups = [
   },
 ]
 
-export function Sidebar() {
+export function Sidebar({ onNavigate }) {
   const { businessId } = useParams()
   const { business } = useBusiness()
   const navigate = useNavigate()
@@ -102,7 +102,7 @@ export function Sidebar() {
 
   return (
     <aside className="w-60 min-h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col">
-      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={() => navigate('/dashboard')}>
+      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={() => { navigate("/dashboard"); onNavigate?.() }}>
         <p className="text-xs text-gray-400 dark:text-gray-500">Axion</p>
         <p className="text-sm font-semibold text-gray-900 dark:text-white truncate mt-0.5">{business?.name || '...'}</p>
         <p className="text-xs text-blue-500 dark:text-blue-400 mt-0.5">← Trocar negócio</p>
@@ -128,7 +128,7 @@ export function Sidebar() {
               {isOpen && (
                 <div className="ml-4 border-l border-gray-200 dark:border-gray-800 pl-3 mt-1 mb-1">
                   {group.items.map((item) => (
-                    <NavLink key={item.path} to={`/b/${businessId}/${item.path}`}
+                    <NavLink key={item.path} to={`/b/${businessId}/${item.path}`} onClick={onNavigate}
                       className={({ isActive }) => `flex items-center px-3 py-2 text-sm rounded-lg transition-colors mb-0.5 ${isActive ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'}`}>
                       {item.label}
                     </NavLink>
