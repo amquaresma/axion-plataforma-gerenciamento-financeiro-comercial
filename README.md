@@ -173,7 +173,8 @@ Adiantamento        →  Conta a pagar
 ## Autor
 
 **Matheus Quaresma**  
-Estudante de Engenharia da Computação — UFES  
+Estudante de Engenharia da Computação SENAC - Ciencia de Dados - UNIVESP
+
 Desenvolvedor independente
 
 - LinkedIn: [linkedin.com/in/matheus-quaresma](https://www.linkedin.com/in/matheus-quaresma)
