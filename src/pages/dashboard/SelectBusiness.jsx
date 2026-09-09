@@ -37,9 +37,9 @@ export function SelectBusiness() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6 py-3 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-6xl mx-auto flex items-center justify-between w-full">
           <AxionLogo />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
               {theme === 'dark' ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
@@ -56,9 +56,9 @@ export function SelectBusiness() {
             <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1" />
             <button onClick={() => navigate('/settings')} className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
               <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold">{initials}</div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{userName.split(' ')[0]}</span>
+              <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">{userName.split(' ')[0]}</span>
             </button>
-            <button onClick={signOut} className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors px-2">Sair</button>
+            <button onClick={signOut} className="hidden sm:block text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors px-2">Sair</button>
           </div>
         </div>
       </header>
