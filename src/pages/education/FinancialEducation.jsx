@@ -4,7 +4,7 @@ const modules = [
   {
     id: 'fundamentos',
     title: 'Fundamentos Financeiros',
-    icon: '🏛️',
+    icon: null,
     color: 'blue',
     lessons: [
       {
@@ -33,7 +33,7 @@ const modules = [
   {
     id: 'gestao',
     title: 'Gestão Financeira',
-    icon: '📊',
+    icon: null,
     color: 'green',
     lessons: [
       {
@@ -62,7 +62,7 @@ const modules = [
   {
     id: 'crescimento',
     title: 'Crescimento e Investimento',
-    icon: '🚀',
+    icon: null,
     color: 'purple',
     lessons: [
       {
@@ -91,7 +91,7 @@ const modules = [
   {
     id: 'impostos',
     title: 'Impostos e Obrigações',
-    icon: '📄',
+    icon: null,
     color: 'orange',
     lessons: [
       {
@@ -141,7 +141,7 @@ export function FinancialEducation() {
           return (
             <button key={mod.id} onClick={() => { setActiveModule(mod.id); setExpandedLesson(null) }}
               className={`p-4 rounded-xl border text-left transition-all ${isActive ? `${c.bg} ${c.border}` : 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700'}`}>
-              <span className="text-2xl block mb-2">{mod.icon}</span>
+              
               <p className={`text-sm font-medium ${isActive ? '' : 'text-gray-700 dark:text-gray-300'}`}>{mod.title}</p>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{mod.lessons.length} lições</p>
             </button>

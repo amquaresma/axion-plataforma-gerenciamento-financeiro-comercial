@@ -62,14 +62,14 @@ export function Notifications() {
           supabase.from('employee_vacations').select('id, employees(name), start_date, end_date').eq('business_id', business.id).eq('status', 'agendado').lte('start_date', new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]).gte('end_date', today),
         ])
 
-        lowStock?.forEach(i => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Estoque', icon: '📦', message: `Estoque baixo: ${i.name} (${i.quantity} un)`, path: 'estoque' }))
-        openOrders?.forEach(o => allNotifications.push({ business: business.name, businessId: business.id, severity: 'medium', type: 'OS', icon: '🔧', message: `OS em aberto: ${o.clients?.name || 'sem cliente'} — ${o.status}`, path: 'ordens-servico' }))
-        overdueAppointments?.forEach(a => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Agenda', icon: '📅', message: `Agendamento não concluído: ${a.title}`, path: 'agenda' }))
-        toolsMaintenance?.forEach(t => allNotifications.push({ business: business.name, businessId: business.id, severity: 'medium', type: 'Ferramenta', icon: '🔨', message: `Manutenção vencida: ${t.name}`, path: 'ferramentas' }))
-        overdueBills?.forEach(b => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Financeiro', icon: '💰', message: `Conta vencida: ${b.description} — R$ ${Number(b.amount).toFixed(2).replace('.', ',')}`, path: 'contas' }))
-        pendingQuotes?.forEach(q => allNotifications.push({ business: business.name, businessId: business.id, severity: 'low', type: 'Vendas', icon: '📋', message: `Orçamento #${q.number} aguardando resposta: ${q.clients?.name || ''}`, path: 'orcamentos' }))
-        taxesDue?.forEach(t => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Fiscal', icon: '📄', message: `Imposto vencido: ${t.type} — R$ ${Number(t.amount).toFixed(2).replace('.', ',')}`, path: 'impostos' }))
-        vacations?.forEach(v => allNotifications.push({ business: business.name, businessId: business.id, severity: 'low', type: 'RH', icon: '🏖️', message: `Férias próximas: ${v.employees?.name} — ${new Date(v.start_date + 'T00:00:00').toLocaleDateString('pt-BR')}`, path: 'ferias' }))
+        lowStock?.forEach(i => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Estoque', icon: null, message: `Estoque baixo: ${i.name} (${i.quantity} un)`, path: 'estoque' }))
+        openOrders?.forEach(o => allNotifications.push({ business: business.name, businessId: business.id, severity: 'medium', type: 'OS', icon: null, message: `OS em aberto: ${o.clients?.name || 'sem cliente'} — ${o.status}`, path: 'ordens-servico' }))
+        overdueAppointments?.forEach(a => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Agenda', icon: null, message: `Agendamento não concluído: ${a.title}`, path: 'agenda' }))
+        toolsMaintenance?.forEach(t => allNotifications.push({ business: business.name, businessId: business.id, severity: 'medium', type: 'Ferramenta', icon: null, message: `Manutenção vencida: ${t.name}`, path: 'ferramentas' }))
+        overdueBills?.forEach(b => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Financeiro', icon: null, message: `Conta vencida: ${b.description} — R$ ${Number(b.amount).toFixed(2).replace('.', ',')}`, path: 'contas' }))
+        pendingQuotes?.forEach(q => allNotifications.push({ business: business.name, businessId: business.id, severity: 'low', type: 'Vendas', icon: null, message: `Orçamento #${q.number} aguardando resposta: ${q.clients?.name || ''}`, path: 'orcamentos' }))
+        taxesDue?.forEach(t => allNotifications.push({ business: business.name, businessId: business.id, severity: 'high', type: 'Fiscal', icon: null, message: `Imposto vencido: ${t.type} — R$ ${Number(t.amount).toFixed(2).replace('.', ',')}`, path: 'impostos' }))
+        vacations?.forEach(v => allNotifications.push({ business: business.name, businessId: business.id, severity: 'low', type: 'RH', icon: null, message: `Férias próximas: ${v.employees?.name} — ${new Date(v.start_date + 'T00:00:00').toLocaleDateString('pt-BR')}`, path: 'ferias' }))
       }
 
       setNotifications(allNotifications)
@@ -172,7 +172,7 @@ export function Notifications() {
                 notifications.filter(n => n.severity === severity).map((n, i) => (
                   <div key={`${severity}-${i}`} onClick={() => navigate(`/b/${n.businessId}/${n.path}`)}
                     className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-5 py-4 flex items-center gap-4 cursor-pointer hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-sm transition-all">
-                    <span className="text-xl">{n.icon}</span>
+                    
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${severityConfig[n.severity].className}`}>{severityConfig[n.severity].label}</span>
