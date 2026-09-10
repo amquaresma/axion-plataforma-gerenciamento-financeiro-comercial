@@ -177,7 +177,7 @@ Estudante de Engenharia da Computação SENAC - Ciencia de Dados - UNIVESP
 
 Desenvolvedor independente
 
-- LinkedIn: [linkedin.com/in/matheus-quaresma](https://www.linkedin.com/in/matheus-quaresma)
+- LinkedIn: [linkedin.com/in/matheus-quaresma](https://www.linkedin.com/in/matheus-quaresma-/)
 - GitHub: [github.com/amquaresma](https://github.com/amquaresma)
 
 ---
