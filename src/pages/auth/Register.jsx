@@ -13,6 +13,7 @@ export function Register() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [sent, setSent] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -21,7 +22,8 @@ export function Register() {
     if (password.length < 6) { setError('A senha deve ter pelo menos 6 caracteres.'); setLoading(false); return }
     const { error } = await signUp(email, password, name)
     if (error) { setError('Erro ao criar conta. Tente novamente.'); setLoading(false); return }
-    navigate('/dashboard')
+    setSent(true)
+    setLoading(false)
   }
 
   return (
@@ -32,22 +34,67 @@ export function Register() {
           <p className="text-gray-500 dark:text-gray-400 text-sm">Crie sua conta grátis</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <Input label="Nome" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
-          <Input label="Email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <Input label="Senha" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
-          {error && <p className="text-sm text-red-500 text-center">{error}</p>}
-          <Button type="submit" disabled={loading}>{loading ? 'Criando conta...' : 'Criar conta'}</Button>
-        </form>
+        {sent ? (
+          <div className="flex flex-col items-center gap-4 text-center">
+            <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="text-green-600 dark:text-green-400">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+              </svg>
+            </div>
 
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
-          Já tem conta?{' '}
-          <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">Entrar</Link>
-        </p>
+            <div>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Conta criada!</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Falta apenas confirmar seu email</p>
+            </div>
 
-        <p className="text-center text-xs text-gray-400 dark:text-gray-600 mt-4">
-          Emails de confirmação são enviados pelo Supabase. Verifique sua caixa de entrada.
-        </p>
+            <div className="w-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 text-left">
+              <p className="text-sm font-semibold text-blue-700 dark:text-blue-400 mb-2">Como ativar sua conta:</p>
+              <ol className="flex flex-col gap-2">
+                <li className="flex items-start gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <span className="w-5 h-5 rounded-full bg-blue-600 dark:bg-blue-500 text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  Abra o email enviado pelo <span className="font-medium mx-1">Supabase</span> para <span className="font-medium mx-1">{email}</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <span className="w-5 h-5 rounded-full bg-blue-600 dark:bg-blue-500 text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  Clique no link <span className="font-medium mx-1">"Confirm your email"</span> dentro do email
+                </li>
+                <li className="flex items-start gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <span className="w-5 h-5 rounded-full bg-blue-600 dark:bg-blue-500 text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                  Você será redirecionado e poderá fazer login normalmente
+                </li>
+              </ol>
+            </div>
+
+            <div className="w-full bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-3">
+              <p className="text-xs text-yellow-700 dark:text-yellow-400">Não encontrou o email? Verifique a pasta de spam ou lixo eletrônico.</p>
+            </div>
+
+            <Link to="/login" className="w-full">
+              <Button>Ir para o login</Button>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <Input label="Nome" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
+              <Input label="Email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input label="Senha" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
+              {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+              <Button type="submit" disabled={loading}>{loading ? 'Criando conta...' : 'Criar conta'}</Button>
+            </form>
+
+            <div className="mt-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-3">
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                Após o cadastro, você receberá um email de confirmação enviado pelo <span className="font-medium text-gray-700 dark:text-gray-300">Supabase</span>. Verifique também sua pasta de spam.
+              </p>
+            </div>
+
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+              Já tem conta?{' '}
+              <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">Entrar</Link>
+            </p>
+          </>
+        )}
       </div>
     </div>
   )

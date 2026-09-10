@@ -10,7 +10,7 @@ export function Footer() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://www.linkedin.com/in/matheus-quaresma"
+            href="https://www.linkedin.com/in/matheus-quaresma-"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"

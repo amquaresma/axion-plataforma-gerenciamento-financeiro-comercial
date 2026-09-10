@@ -30,7 +30,7 @@ export function SplashScreen({ onFinish }) {
       <div className="flex flex-col items-center gap-8">
         {/* Logo */}
         <div className="flex flex-col items-center gap-4">
-          <img src="/assets/logo.jpg" alt="Axion" className="w-20 h-20 rounded-2xl object-cover shadow-2xl" />
+          <img src="/assets/logoaxion.jpg" alt="Axion" className="w-20 h-20 rounded-2xl object-cover shadow-2xl" />
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white tracking-tight">Axion</h1>
             <p className="text-gray-400 text-sm mt-1">Gestão simplificada para o seu negócio</p>
